@@ -21,21 +21,11 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry;
 
 /**
  * RangersApplogFlutterPlugin
  */
 public class RangersApplogFlutterPlugin implements FlutterPlugin {
-
-
-    /**
-     * Plugin registration.
-     */
-    public static void registerWith(PluginRegistry.Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "rangers_applog_flutter_plugin");
-        channel.setMethodCallHandler(new AppLogMethodCallHandler(registrar.activity()));
-    }
 
     static class AppLogMethodCallHandler implements MethodCallHandler {
 
@@ -63,7 +53,7 @@ public class RangersApplogFlutterPlugin implements FlutterPlugin {
         }
 
         @Override
-        public void onMethodCall(MethodCall call, Result result) {
+        public void onMethodCall(MethodCall call, @NonNull Result result) {
             switch (call.method) {
                 case FlutterPluginMethodInitRangersApplog:
                     Log.e(TAG, "appid=" + (String) call.argument("appid") + ", channel=" + (String) call.argument("channel") +

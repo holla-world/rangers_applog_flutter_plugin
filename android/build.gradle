@@ -2,6 +2,7 @@ group 'com.bytedance.rangers_applog_flutter_plugin'
 version '1.0'
 
 buildscript {
+    ext.kotlin_version = '1.7.10'
     repositories {
         google()
         mavenCentral()
@@ -9,13 +10,14 @@ buildscript {
             allowInsecureProtocol = true
             url "https://storage.googleapis.com/download.flutter.io"
         }
-        maven{
+        maven {
             url 'https://artifact.bytedance.com/repository/Volcengine/'
         }
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -27,13 +29,14 @@ rootProject.allprojects {
             allowInsecureProtocol = true
             url "https://storage.googleapis.com/download.flutter.io"
         }
-        maven{
+        maven {
             url 'https://artifact.bytedance.com/repository/Volcengine/'
         }
     }
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     compileSdk 34
@@ -44,6 +47,11 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
 }
 
 
@@ -63,6 +71,7 @@ if (flutterRoot == null) {
 
 dependencies {
     implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.core:core-ktx:+'
     compileOnly 'com.bytedance.applog:RangersAppLog-Lite-cn:6.16.4'
 
     // 解决编译找不到flutter sdk中类文件问题
