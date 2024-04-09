@@ -80,7 +80,7 @@ static inline id setNSNullToNil(id value, Class target){
         config.logNeedEncrypt = [enableEncrypt boolValue];
         config.abEnable = [enableAB boolValue];
         config.showDebugLog = [enableDebugLog boolValue];
-        config.serviceVendor = BDAutoTrackServiceVendorCN;
+        config.serviceVendor = BDAutoTrackServiceVendorPrivate;
 #if DEBUG
         config.showDebugLog = YES;
         config.logger = ^(NSString * log) {
